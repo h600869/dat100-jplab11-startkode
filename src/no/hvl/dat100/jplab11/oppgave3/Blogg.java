@@ -5,46 +5,81 @@ import no.hvl.dat100.jplab11.oppgave1.*;
 
 public class Blogg {
 
-	// TODO: objektvariable 
-
+	private int lengde;
+	private Innlegg[] innleggtabell;
+	private int nesteledige;
+	
 	public Blogg() {
-		throw new UnsupportedOperationException(TODO.constructor("Blogg"));
+		innleggtabell = new Innlegg[20];
 	}
 
 	public Blogg(int lengde) {
-		throw new UnsupportedOperationException(TODO.constructor("Blogg"));
+		this.lengde = lengde;
+		innleggtabell = new Innlegg[lengde];
 	}
 
 	public int getAntall() {
-		throw new UnsupportedOperationException(TODO.method());
+		return this.nesteledige;
 	}
 	
 	public Innlegg[] getSamling() {
-		throw new UnsupportedOperationException(TODO.method());
+		return innleggtabell;
 
 	}
 	
 	public int finnInnlegg(Innlegg innlegg) {
 
-		throw new UnsupportedOperationException(TODO.method());
+		boolean funnet = false;
+		int e = 0;
+		while (e < nesteledige && !funnet) {
+			if (innleggtabell[e] == innlegg)
+			funnet = true;
+			else 
+			e++;
+		}
+		if (funnet) return e;
+		else 
+			return -1;
 	}
 
 	public boolean finnes(Innlegg innlegg) {
-		throw new UnsupportedOperationException(TODO.method());
+		int f = finnInnlegg(innlegg);
+		if (f >=0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public boolean ledigPlass() {
-		throw new UnsupportedOperationException(TODO.method());
+		for(int g =0; g < innleggtabell.length; g++) {
+			if(innleggtabell[g] == null) {
+				return true;
+			}
+			else
+				g++;
+		} return false;
 
 	}
 	
 	public boolean leggTil(Innlegg innlegg) {
 
-		throw new UnsupportedOperationException(TODO.method());
+		boolean ny = finnInnlegg(innlegg) == -1;
+		if(ny && nesteledige < innleggtabell.length) {
+			innleggtabell[nesteledige] = innlegg;
+			nesteledige ++;
+			return true;
+		} else {
+				return false;
+		}
 	}
 	
 	public String toString() {
-		throw new UnsupportedOperationException(TODO.method());
+		String svar = "2"+"\n";
+        for (int i = 0; i < nesteledige; i++) {
+            svar += innleggtabell[i].toString() + "";
+        }
+        return svar;
 	}
 
 	// valgfrie oppgaver nedenfor
